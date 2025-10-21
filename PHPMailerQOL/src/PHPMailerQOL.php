@@ -20,6 +20,8 @@
  *            OTHER DEALINGS IN THE SOFTWARE.
  */
 
+namespace suny-upstate-cwt\PHPMailerQOL;
+
 class PHPMailerQOL extends PHPMailer\PHPMailer\PHPMailer
 {
     /**
