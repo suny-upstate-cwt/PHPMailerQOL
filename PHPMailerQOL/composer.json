@@ -1,0 +1,21 @@
+{
+    "name": "suny-upstate-cwt/phpmailerqol",
+    "type": "library",
+    "description": "PHPMailerQOL is a non-intrusive quality-of-life extension of PHPMailer.",
+    "authors": [
+        {
+            "name": "German Drulyk",
+            "email": "drulykg@upstate.edu"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "phpmailer/phpmailer": ">=6.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "suny-upstate-cwt\\PHPMailerQOL\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
