@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SUNY-Upstate-CWT\\PHPMailerQOL\\": "src/"
+            "SUNYUpstateCWT\\PHPMailerQOL\\": "src/"
         }
     },
     "license": "MIT"
