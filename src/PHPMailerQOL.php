@@ -22,7 +22,7 @@
 
 namespace SUNYUpstateCWT\PHPMailerQOL;
 
-class PHPMailerQOL extends PHPMailer\PHPMailer\PHPMailer
+class PHPMailerQOL extends \PHPMailer\PHPMailer\PHPMailer
 {
     /**
      * Default Address Domain
