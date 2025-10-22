@@ -33,7 +33,7 @@ Note that the `vendor` folder and the `vendor/autoload.php` script are generated
 <?php
 // Import PHPMailerQOL class into the global namespace
 // These must be at the top of your script, not inside a function
-use SUNY-Upstate-CWT\PHPMailerQOL\PHPMailerQOL
+use SUNYUpstateCWT\PHPMailerQOL\PHPMailerQOL;
 
 // Load Composer's autoloader (created by composer, not included with PHPMailerQOL)
 require 'vendor/autoload.php';
