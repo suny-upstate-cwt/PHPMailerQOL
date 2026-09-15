@@ -577,12 +577,26 @@ class PHPMailerQOL extends \PHPMailer\PHPMailer\PHPMailer
             // Account for RFC822-style address possibility
             if( preg_match( '/<[^<>@\r\n]+@[^<>@\r\n]+>/', $address ) )
             {
-                $parseAddresses = imap_rfc822_parse_adrlist( $address, $this->DefaultAddressDomain );
-                $parseAddresses = ( $parseAddresses && !isset( $parseAddresses[ 0 ] ) ? [ $parseAddresses ] : $parseAddresses );
-                if( $parseAddresses )
+                // Check if IMAP available
+                if( function_exists( 'imap_rfc822_parse_adrlist' ) )
                 {
-                    $address = $parseAddresses[ 0 ]->mailbox.'@'.$parseAddresses[ 0 ]->host;
-                    $name = ( $name === '' && isset( $parseAddresses[ 0 ]->personal ) ? $parseAddresses[ 0 ]->personal : $name );
+                    $parseAddresses = imap_rfc822_parse_adrlist( $address, $this->DefaultAddressDomain );
+                    $parseAddresses = ( $parseAddresses && !isset( $parseAddresses[ 0 ] ) ? [ $parseAddresses ] : $parseAddresses );
+                    if( $parseAddresses )
+                    {
+                        $address = $parseAddresses[ 0 ]->mailbox.'@'.$parseAddresses[ 0 ]->host;
+                        $name = ( $name === '' && isset( $parseAddresses[ 0 ]->personal ) ? $parseAddresses[ 0 ]->personal : $name );
+                    }
+                }
+                else
+                {
+                    // Fallback
+                    $parseAddresses = $this->parseAddresses( $address, true, $this->CharSet );
+                    if( $parseAddresses )
+                    {
+                        $address = $parseAddresses[ 0 ][ 'address' ];
+                        $name = ( $name === '' ? $parseAddresses[ 0 ][ 'name' ] : $name );
+                    }
                 }
             }
             
