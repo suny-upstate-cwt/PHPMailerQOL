@@ -14,7 +14,7 @@
     },
     "suggest": {
         "ext-imap": "Avoid $useimap deprecation warnings"
-    }
+    },
     "autoload": {
         "psr-4": {
             "SUNYUpstateCWT\\PHPMailerQOL\\": "src/"
