@@ -562,7 +562,7 @@ class PHPMailerQOL extends \PHPMailer\PHPMailer\PHPMailer
             if( is_array( $name ) )
             {
                 $name = array_values( $name );
-                $name = ( $name === '' && isset( $name[ 1 ] ) && is_scalar( $name[ 1 ] ) ? $name[ 1 ] : '' );
+                $name = ( isset( $name[ 1 ] ) && is_scalar( $name[ 1 ] ) ? $name[ 1 ] : '' );
             }
             $name = trim( $name );
             
