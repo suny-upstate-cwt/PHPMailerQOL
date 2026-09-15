@@ -12,6 +12,9 @@
         "php": ">=5.6",
         "phpmailer/phpmailer": ">=6.10"
     },
+    "suggest": {
+        "ext-imap": "Avoid $useimap deprecation warnings"
+    }
     "autoload": {
         "psr-4": {
             "SUNYUpstateCWT\\PHPMailerQOL\\": "src/"
