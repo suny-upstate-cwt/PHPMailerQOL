@@ -574,12 +574,16 @@ class PHPMailerQOL extends \PHPMailer\PHPMailer\PHPMailer
                 $address = ( isset( $address[ 0 ] ) && is_scalar( $address[ 0 ] ) ? $address[ 0 ] : '' );
             }
             
-            // Account for RFC822 style address possibility
-            $parseAddresses = $this->parseAddresses( $address, true, $this->CharSet );
-            if( $parseAddresses )
+            // Account for RFC822-style address possibility
+            if( preg_match( '/<[^<>@\r\n]+@[^<>@\r\n]+>/', $address ) )
             {
-                $address = $parseAddresses[ 0 ][ 'address' ];
-                $name = ( $name === '' ? $parseAddresses[ 0 ][ 'name' ] : $name );
+                $parseAddresses = imap_rfc822_parse_adrlist( $address, $this->DefaultAddressDomain );
+                $parseAddresses = ( $parseAddresses && !isset( $parseAddresses[ 0 ] ) ? [ $parseAddresses ] : $parseAddresses );
+                if( $parseAddresses )
+                {
+                    $address = $parseAddresses[ 0 ]->mailbox.'@'.$parseAddresses[ 0 ]->host;
+                    $name = ( $name === '' && isset( $parseAddresses[ 0 ]->personal ) ? $parseAddresses[ 0 ]->personal : $name );
+                }
             }
             
             $address = trim( $this->appendDefaultAddressDomain( $address ) );
